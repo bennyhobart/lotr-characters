@@ -3,7 +3,7 @@ let express = require('express');
 let fs = require('fs');
 let path = require('path');
 let shuffle = require('shuffle-array');
-let trimPunctuation = require('trimPunctuation');
+let trimPunctuation = require('trim-punctuation');
 let app = express();
 let jsonCharacters = fs.readFileSync(path.join(__dirname, 'data/names.json')).toString();
 let names = JSON.parse(jsonCharacters); 
@@ -22,5 +22,5 @@ function newName() {
     while(endNames === null) {
         endNames = shuffle.pick(names.ends);
     }
-    return trimPunctuation(shuffle.pick(firstNames) + shuffle.pick(names.ends));
+    return trimPunctuation(shuffle.pick(firstNames) + shuffle.pick(endNames));
 }
