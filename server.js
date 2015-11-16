@@ -4,8 +4,11 @@ let fs = require('fs');
 let path = require('path');
 let shuffle = require('shuffle-array');
 let trimPunctuation = require('trim-punctuation');
+let mongoose = require('mongoose');
+mongoose.connect('mongodb://locahost/test');
+
 let app = express();
-let jsonCharacters = fs.readFileSync(path.join(__dirname, 'data/names.json')).toString();
+let jsonCharacters = fs.readFileSync(path.join(__dirname, 'data.json')).toString();
 let names = JSON.parse(jsonCharacters); 
 
 app.use((req, res) => {
