@@ -1,8 +1,8 @@
 'use strict';
-let shuffle = require('shuffle-array');
-let trimPunctuation = require('trim-punctuation');
-let fs = require('fs');
-let path = require('path');
+const shuffle = require('shuffle-array');
+const trimPunctuation = require('trim-punctuation');
+const fs = require('fs');
+const path = require('path');
 
 let jsonCharacters = fs.readFileSync(path.join(__dirname, 'data.json')).toString();
 let names = JSON.parse(jsonCharacters); 

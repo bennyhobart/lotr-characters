@@ -3,7 +3,7 @@ const generateName = require('./generate-name');
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const debug = require('debug');
+const debug = require('debug')('expressapp');
 
 //Mongoose Config
 const mongoURL = process.env.MONGO_URI || 'mongodb://localhost/lotr-characters';
@@ -22,4 +22,4 @@ app.use((req, res) => {
     res.render('index', {name: generateName()});
 });
 
-app.listen(port, () => process.stdout.write(`Listening on port ${port}`));
+app.listen(port, () => debug(`Listening on port ${port}`));
