@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "1.14.1",
     "cheerio": "^0.19.0",
     "debug": "2.2.0",
     "express": "^4.13.3",
+    "express-logger": "0.0.3",
     "flatmap": "0.0.3",
     "hyphenation.en-us": "^0.2.1",
     "hypher": "^0.2.3",

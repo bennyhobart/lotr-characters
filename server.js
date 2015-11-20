@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const debug = require('debug')('expressapp');
+const results = require('./results/routes');
 
 //Mongoose Config
 const mongoURL = process.env.MONGO_URI || 'mongodb://localhost/lotr-characters';
@@ -18,8 +19,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(require('body-parser').json());
+app.use(require('express-logger')({
+    path: process.env.LOGFILE || path.join(__dirname, 'logs')
+}));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/results', results);
 app.use((req, res) => {
     res.render('index', {name: generateName()});
 });
-
 app.listen(port, () => debug(`Listening on port ${port}`));
