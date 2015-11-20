@@ -4,10 +4,17 @@ const Result = mongoose.model('Post', {
     rating: {
         type: Number,
         min: 0,
-        max: 5
+        max: 5,
+        required: true
     },
-    image: Object,
-    name: String,
+    image: {
+        type: Object,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
     created_at: {
         type: Date,
         default: Date.now
