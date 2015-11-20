@@ -4,15 +4,18 @@ let fs = require('fs');
 let path = require('path');
 let shuffle = require('shuffle-array');
 let trimPunctuation = require('trim-punctuation');
-
-let app = express();
 let jsonCharacters = fs.readFileSync(path.join(__dirname, 'data.json')).toString();
 let names = JSON.parse(jsonCharacters); 
+let app = express();
+const port = process.env.PORT || 3000;
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 app.use((req, res) => {
-    res.send(newName());
+    res.render('index', {name: newName()});
 });
-app.listen(3000, () => process.stdout.write('Listening on port 3000'));
+
+app.listen(port, () => process.stdout.write(`Listening on port ${port}`));
 
 function newName() {
     let firstNames = null;

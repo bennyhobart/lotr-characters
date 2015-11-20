@@ -2,10 +2,10 @@
     "name": "lotr-characters",
     "version": "1.0.0",
     "description": "",
-    "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "scrape": "node ./data/scrape.js | node ./data/analyse.js > data.json"
+        "scrape": "node ./data/scrape.js | node ./data/analyse.js > data.json",
+        "main": "nodemon server.js"
     },
     "author": "",
     "license": "ISC",
@@ -15,13 +15,14 @@
         "flatmap": "0.0.3",
         "hyphenation.en-us": "^0.2.1",
         "hypher": "^0.2.3",
+        "jade": "1.11.0",
+        "nodemon": "1.8.1",
         "request": "^2.65.0",
         "shuffle-array": "^0.1.0",
         "string": "^3.3.1",
         "trim-punctuation": "^1.0.1"
     },
     "engines": {
-        "node" : "4.2.2"
+        "node": "4.2.2"
     }
 }
-
