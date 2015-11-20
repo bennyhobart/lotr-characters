@@ -1,6 +1,7 @@
 #LOTR Characters
-##Run
+
+##Environment Variables
 ```
-npm run scrape
-npm start
+PORT - port to listen on
+MONGO_URI - uri for mongo db
 ```
