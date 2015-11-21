@@ -1,36 +1,36 @@
-html
-    head
-        title Your Results!
-    body
-        div #{result.name}
-        div.rating
-            button(data-rating="0") 0
-            button(data-rating="1") 1
-            button(data-rating="2") 2
-            button(data-rating="3") 3
-            button(data-rating="4") 4
-            button(data-rating="5") 5
-        script.
-            var buttons = document.querySelectorAll('button');
-            for(var i = 0; i < buttons.length; i++) {
-                buttons[i].addEventListener('click', function(evt){
-                    var button = evt.target;
-                    var body = JSON.stringify({
-                        rating: parseInt(button.attributes['data-rating'].value)
-                    });
-                    var headers = new Headers();
-                    headers.append('Content-Type', 'application/json');
-                    fetch('/results/#{result.id}', {
-                        method: 'PUT',
-                        headers: headers,
-                        body: body
-                    })
-                    .then(showThanks);;
+extends ./layouts/base.jade
+block title
+    title LOTR Character Result!
+block content
+    div #{result.name}
+    div.rating
+        button(data-rating="0") 0
+        button(data-rating="1") 1
+        button(data-rating="2") 2
+        button(data-rating="3") 3
+        button(data-rating="4") 4
+        button(data-rating="5") 5
+    script.
+        var buttons = document.querySelectorAll('button');
+        for(var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function(evt){
+                var button = evt.target;
+                var body = JSON.stringify({
+                    rating: parseInt(button.attributes['data-rating'].value)
                 });
-            }
-            function showThanks() {
-                document.querySelector('div.rating').remove();
-                var thanks = document.createElement('div');
-                thanks.textContent = 'Thanks';
-                document.querySelector('body').insertBefore(thanks, document.querySelector('script'));
-            }
+                var headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+                fetch('/results/#{result.id}', {
+                    method: 'PUT',
+                    headers: headers,
+                    body: body
+                })
+                .then(showThanks);;
+            });
+        }
+        function showThanks() {
+            document.querySelector('div.rating').remove();
+            var thanks = document.createElement('div');
+            thanks.textContent = 'Thanks';
+            document.querySelector('body').insertBefore(thanks, document.querySelector('script'));
+        }

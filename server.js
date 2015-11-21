@@ -23,6 +23,7 @@ app.use(require('body-parser').json());
 app.use(require('express-logger')({
     path: process.env.LOGFILE || path.join(__dirname, 'logs')
 }));
+app.use(require('express-less-middleware')());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/results', results);
 app.use((req, res) => {

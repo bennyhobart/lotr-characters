@@ -1,8 +1,7 @@
-html
-    head
-        title LOTR Character Names
-    body
-        form(name="get-name", action="results", method="post", enctype="multipart/form-data")
-            input(type="file", name="image")
-            button(type="submit", id="submit-button") Get Name
-        script(src="main.js")
+extends ./layouts/base.jade
+block title
+    LOTR Character Names
+block content
+    form(name="get-name", action="results", method="post", enctype="multipart/form-data")
+        input(type="file", name="image")
+        button(type="submit", id="submit-button") Get Name
