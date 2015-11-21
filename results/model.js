@@ -4,8 +4,7 @@ const Result = mongoose.model('Post', {
     rating: {
         type: Number,
         min: 0,
-        max: 5,
-        required: true
+        max: 5
     },
     image: {
         type: Object,

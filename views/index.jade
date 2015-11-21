@@ -1,4 +1,8 @@
 html
     head
         title LOTR Character Names
-    body #{name}
+    body
+        form(name="get-name", action="results", method="post")
+            input(type="file", name="image")
+            button(type="submit", id="submit-button") Get Name
+        script(src="main.js")

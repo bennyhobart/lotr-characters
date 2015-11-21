@@ -20,6 +20,7 @@
     "hypher": "^0.2.3",
     "jade": "1.11.0",
     "mongoose": "4.2.5",
+    "morse": "0.1.0",
     "nodemon": "1.8.1",
     "request": "^2.65.0",
     "shuffle-array": "^0.1.0",
