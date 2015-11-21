@@ -25,8 +25,7 @@ router.post('/', multipart, (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    const result = req.body;
-    model.update(result, req.params.id)
+    model.update(req.body, req.params.id)
         .then((result) => res.send(result), err => res.status(400).send(err));
 });
 
