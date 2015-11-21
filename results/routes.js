@@ -3,18 +3,25 @@ const express = require('express');
 const router = express.Router();
 const model  = require('./model.js');
 const generateName = require('../generate-name.js');
+const analyseImage = require('../analyse-image.js');
+const multipart = require('connect-multiparty')();
 
 router.get('/', (req, res) => {
     model.find()
         .then((results) => res.send(results), err => res.status(400).send(err));
 });
 
-router.post('/', (req, res) => {
-    const result = req.body;
-    const name = generateName();
-    result.name = name;
-    model.create(result)
-        .then((result) => res.redirect('/' + result._id), err => res.status(400).send(err));
+router.post('/', multipart, (req, res) => {
+    if(req.files.image == undefined) {
+        res.status(400).send('No Image Attached');
+    }
+    analyseImage(req.files.image.path)
+        .then((imageResult) => {
+            const result = {name: generateName(), image: imageResult};
+            return model.create(result);
+        })
+        .then((result) => res.redirect('/results/' + result._id))
+        .catch(err => res.status(400).send(err));
 });
 
 router.put('/:id', (req, res) => {
@@ -25,7 +32,7 @@ router.put('/:id', (req, res) => {
 
 router.get('/:id', (req, res) => {
     model.read(req.params.id)
-        .then((result) => res.send(JSON.stringify(result)), err => res.status(400).send(err));
+        .then((result) => res.render('result', {result}), err => res.status(400).send(err));
 });
 
 router.delete('/:id', (req, res) => {
