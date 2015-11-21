@@ -1,9 +1,10 @@
 doctype html
 html
     head
+        link(rel="stylesheet", href="/main.css")
         block title
             title Name Generator
-        link(src="main.css")
     body
-        block content
-        script(src="main.js")
+        div.container
+            block content
+        script(src="/main.js")

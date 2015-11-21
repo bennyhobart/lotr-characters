@@ -1,7 +1,13 @@
 extends ./layouts/base.jade
 block title
-    LOTR Character Names
+    title LOTR Character Names
 block content
-    form(name="get-name", action="results", method="post", enctype="multipart/form-data")
-        input(type="file", name="image")
-        button(type="submit", id="submit-button") Get Name
+    div.jumbotron
+        h1 Character Name Generator
+        p This is a simple character name generator that uses your image to determine a character name!
+        p 60% of the time it works everytime.
+        form(name="get-name", action="results", method="post", enctype="multipart/form-data")
+            div.form-group
+                label(form="image") Choose Image
+                input(type="file", name="image")
+            button.btn.btn-primary.btn-lg(type="submit", id="submit-button") Find Name

@@ -2,14 +2,18 @@ extends ./layouts/base.jade
 block title
     title LOTR Character Result!
 block content
-    div #{result.name}
-    div.rating
-        button(data-rating="0") 0
-        button(data-rating="1") 1
-        button(data-rating="2") 2
-        button(data-rating="3") 3
-        button(data-rating="4") 4
-        button(data-rating="5") 5
+    div.jumbotron
+        p And your Name is!
+        h1 #{result.name}
+        div.rating
+            p Please help us make this site better by rating your name :)
+            div.btn-group
+                button.btn.btn-default.btn-lg(data-rating="0") 0
+                button.btn.btn-default.btn-lg(data-rating="1") 1
+                button.btn.btn-default.btn-lg(data-rating="2") 2
+                button.btn.btn-default.btn-lg(data-rating="3") 3
+                button.btn.btn-default.btn-lg(data-rating="4") 4
+                button.btn.btn-default.btn-lg(data-rating="5") 5
     script.
         var buttons = document.querySelectorAll('button');
         for(var i = 0; i < buttons.length; i++) {
@@ -29,8 +33,8 @@ block content
             });
         }
         function showThanks() {
-            document.querySelector('div.rating').remove();
-            var thanks = document.createElement('div');
+            var thanks = document.createElement('p');
             thanks.textContent = 'Thanks';
-            document.querySelector('body').insertBefore(thanks, document.querySelector('script'));
+            document.querySelector('.jumbotron').insertBefore(thanks, document.querySelector('.rating'));
+            document.querySelector('.rating').remove();
         }
