@@ -1,10 +1,10 @@
 'use strict';
-const generateName = require('./generate-name');
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-const debug = require('debug')('expressapp');
-const results = require('./results/routes');
+const generateName = require('./generate-name'),
+    express = require('express'),
+    path = require('path'),
+    mongoose = require('mongoose'),
+    debug = require('debug')('expressapp'),
+    results = require('./results/routes');
 
 //Mongoose Config
 const mongoURL = process.env.MONGO_URI || 'mongodb://localhost/lotr-characters';

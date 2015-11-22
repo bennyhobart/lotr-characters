@@ -1,10 +1,11 @@
 'use strict';
 const express = require('express');
-const router = express.Router();
-const model  = require('./model.js');
-const generateName = require('../generate-name.js');
-const analyseImage = require('../analyse-image.js');
-const multipart = require('connect-multiparty')();
+const router = express.Router(),
+    model  = require('./model.js'),
+    generateName = require('../generate-name.js'),
+    analyseImage = require('../analyse-image.js'),
+    sendOut = require('../send-out.js'),
+    multipart = require('connect-multiparty')();
 
 router.get('/', (req, res) => {
     model.find()
@@ -17,7 +18,10 @@ router.post('/', multipart, (req, res) => {
     }
     analyseImage(req.files.image.path)
         .then((imageResult) => {
-            const result = {name: generateName(), image: imageResult};
+            const name = generateName(),
+                result = {name: name, image: imageResult};
+            console.log(result);
+            sendOut(result.name);
             return model.create(result);
         })
         .then((result) => res.redirect('/results/' + result._id))
